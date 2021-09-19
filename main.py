@@ -1,5 +1,5 @@
 from GameApp.GameApp import GameApp
 
 
-game = GameApp()
-game.start()
+game_app = GameApp()
+game_app.start()

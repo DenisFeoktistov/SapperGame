@@ -1,3 +1,3 @@
-class Game:
+class FieldInterface:
     def __init__(self) -> None:
         pass

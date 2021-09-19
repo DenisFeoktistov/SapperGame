@@ -9,15 +9,14 @@ def enumerate_choice(options: List[str] = None, text: str = "Select option:",
         print("No possible options...")
         return EMPTY_OPTIONS_LIST
 
-    print(text)
-    for i, option in enumerate(options):
-        print(f"Option {i + 1}: {option}")
-
     while True:
         try:
+            print(text)
+            for i, option in enumerate(options):
+                print(f"\tOption {i + 1}: {option}")
             index: int = int(input())
             if index < 1 or index > len(options):
                 raise Exception("Incorrect index")
-            return int(input())
+            return index - 1
         except Exception:
             print(error_message)

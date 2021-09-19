@@ -9,3 +9,6 @@ class Field:
         self.matrix = matrix
         self.filename: str = filename
 
+    def __str__(self):
+        return "\n".join(map(lambda row: "".join(map(str, row)), self.matrix))
+
