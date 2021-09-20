@@ -26,5 +26,6 @@ class GameApp:
                 field_file_name: str = self.app_tui.select_field_file()
 
             field: Field = self.file_assistant.decode(field_file_name)
+            print("Decode")
 
             self.game.start(field)
