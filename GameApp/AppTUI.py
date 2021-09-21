@@ -38,7 +38,7 @@ class AppTUI:
             print()
             y = choice_of_number_in_interval(5, 15, text="Select field y-size")
             print()
-            mines = choice_of_number_in_interval(3, int(x * y * 0.2), text="Select number of bombs")
+            mines = choice_of_number_in_interval(3, int(x * y * 0.3), text="Select number of bombs")
             print()
 
             return x, y, mines

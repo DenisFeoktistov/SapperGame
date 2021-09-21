@@ -3,20 +3,31 @@ from enum import IntEnum
 
 class CellContent(IntEnum):
     EMPTY = 0
-    FLAG = 1
-    MINE = 2
+    MINE = 1
 
 
 class Cell:
-    def __init__(self, content: CellContent = CellContent.EMPTY, opened: bool = False) -> None:
+    def __init__(self, content: CellContent = CellContent.EMPTY, opened: bool = False, flagged: bool = False) -> None:
         self.content: CellContent = content
-        self.opened = opened
-        self.mines_around = -1
+        self.opened: bool = opened
+        self.flagged: bool = flagged
+
+        self.mines_around: int = -1
+
+    def open(self) -> None:
+        self.opened = True
+        self.flagged = False
+
+    def mark_as_flag(self) -> None:
+        if not self.opened:
+            self.flagged = True
 
     def __str__(self) -> str:
-        if self.content == CellContent.FLAG:
+        # if not self.opened:
+        #     return "▆"
+        if self.flagged:
             return "⚐"
         if self.content == CellContent.MINE:
-            return "💣"
+            return "◉"
         if self.content == CellContent.EMPTY:
-            return "🗌"
+            return "▢"
