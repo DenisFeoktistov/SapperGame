@@ -18,16 +18,21 @@ class Cell:
         self.opened = True
         self.flagged = False
 
+    def flag(self) -> None:
+        self.flagged = not self.flagged
+
     def mark_as_flag(self) -> None:
         if not self.opened:
             self.flagged = True
 
     def __str__(self) -> str:
-        # if not self.opened:
-        #     return "▆"
-        if self.flagged:
+        if self.flagged and not self.opened:
             return "⚐"
+        if not self.opened:
+            return "○"
         if self.content == CellContent.MINE:
             return "◉"
         if self.content == CellContent.EMPTY:
-            return "▢"
+            if self.mines_around == -1:
+                raise Exception("Init Cell with Field before calling __str__")
+            return str(self.mines_around)

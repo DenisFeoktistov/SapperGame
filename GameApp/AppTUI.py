@@ -34,12 +34,9 @@ class AppTUI:
         field_settings = field_settings_options[enumerate_choice(field_settings_options)]
 
         if field_settings == CUSTOM:
-            x = choice_of_number_in_interval(5, 15, text="Select field x-size")
-            print()
-            y = choice_of_number_in_interval(5, 15, text="Select field y-size")
-            print()
+            x = choice_of_number_in_interval(5, 9, text="Select field x-size")
+            y = choice_of_number_in_interval(5, 9, text="Select field y-size")
             mines = choice_of_number_in_interval(3, int(x * y * 0.3), text="Select number of bombs")
-            print()
 
             return x, y, mines
         else:

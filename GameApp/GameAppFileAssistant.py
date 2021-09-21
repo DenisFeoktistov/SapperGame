@@ -19,8 +19,7 @@ class GameAppFileAssistant:
         return sorted(os.listdir(path=FIELDS_DIR))
 
     def decode(self, field_file_name: str) -> Field:
-        if not field_file_name.startswith(FIELDS_DIR):
-            field_file_name = FIELDS_DIR + field_file_name
+        field_file_name = self.normalize(field_file_name)
 
         with open(field_file_name, mode="r") as field_file:
             lines: List[str] = list(map(str.strip, field_file.readlines()))
@@ -65,13 +64,17 @@ class GameAppFileAssistant:
 
                     matrix[len(matrix) - 1].append(Cell(type_dict[type], opened_dict[opened], flagged_dict[flagged]))
 
-            return Field(matrix, FIELDS_DIR + field_file_name)
+            return Field(matrix, self.normalize(field_file_name))
 
-    def save_field(self, matrix: List[List[Cell]]) -> None:
-        last_index: int = 0
-        for field_file_name in os.listdir(path=FIELDS_DIR):
-            last_index = max(last_index, int(field_file_name.lstrip("Field").rstrip(".txt")))
+    def save_field(self, matrix: List[List[Cell]], field_file_name: str = "") -> None:
+        if not field_file_name:
+            last_index: int = 0
+            for field_file_name in os.listdir(path=FIELDS_DIR):
+                last_index = max(last_index, int(field_file_name.lstrip("Field").rstrip(".txt")))
 
+            field_file_name = FIELDS_DIR + f"Field{last_index + 1}" + ".txt"
+        else:
+            field_file_name = self.normalize(field_file_name)
         # My strange algorithm to hide field content.
         # I select 5 different numbers for each type, state opened/closed, state flagged/not flagged,
         # write this numbers in the start of the file and then for each cell I select random number from selected
@@ -95,7 +98,7 @@ class GameAppFileAssistant:
         flagged_dict[True] = flagged_key_string[:5]
         flagged_dict[False] = flagged_key_string[5:]
 
-        with open(FIELDS_DIR + f"Field{last_index + 1}" + ".txt", mode="w") as field_file:
+        with open(field_file_name, mode="w") as field_file:
             func = lambda x: "".join(map(str, x))
             field_file.write(func(type_key_string) + func(opened_key_string) + func(flagged_key_string) + "\n")
 
@@ -103,3 +106,15 @@ class GameAppFileAssistant:
                 map(lambda cell: str(choice(type_dict[cell.content])) + str(choice(opened_dict[cell.opened])) + str(
                     choice(flagged_dict[cell.flagged])), row)),
                                            matrix)))
+
+    def delete(self, field_file_name: str) -> None:
+        field_file_name = self.normalize(field_file_name)
+
+        os.remove(field_file_name)
+
+    @staticmethod
+    def normalize(field_file_name: str) -> str:
+        field_file_name: str = FIELDS_DIR + field_file_name if not field_file_name.startswith(
+            FIELDS_DIR) else field_file_name
+        field_file_name: str = field_file_name + ".txt" if not field_file_name.endswith(".txt") else field_file_name
+        return field_file_name

@@ -25,5 +25,9 @@ class GameApp:
                 field_file_name: str = self.app_tui.select_field_file()
 
             field: Field = self.file_assistant.decode(field_file_name)
+            field, finished = self.game.game_cycle(field)
 
-            self.game.start(field)
+            if finished:
+                self.file_assistant.delete(field.filename)
+            else:
+                self.file_assistant.save_field(field.matrix, field.filename)
