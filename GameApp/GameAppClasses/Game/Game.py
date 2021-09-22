@@ -1,9 +1,11 @@
+from __future__ import annotations
 from typing import Tuple
 
 
 from GameApp.GameAppClasses.Game.GameClasses.FieldInterface import FieldInterface, State
 from GameApp.GameAppClasses.Game.GameClasses.GameTUI import GameTUI, Action
 from GameApp.SubsidiaryFiles.input_output_functions.colorized import colorized, Colors
+from .GameClasses.AI import AI
 from GameApp.SubsidiaryFiles.Field import Field
 
 
@@ -11,9 +13,11 @@ class Game:
     def __init__(self) -> None:
         self.game_tui = GameTUI()
         self.field_interface = FieldInterface()
+        self.AI = AI()
 
     def game_cycle(self, field: Field) -> Tuple[Field, bool]:
         state: State = self.field_interface.set_field(field)
+        self.AI.set_field(field)
 
         while True:
             print(colorized("Actual field:", Colors.BLUE))
@@ -26,6 +30,11 @@ class Game:
 
             if action == Action.SAVE:
                 return field, False
+
+            if action == Action.AI_MOVE:
+                AI_move = self.AI.get_move()
+                print(colorized(f"Put flag on position {(AI_move[0] + 1, AI_move[1] + 1)}", Colors.BLUE))
+                continue
 
             if action == Action.OPEN:
                 state = self.field_interface.open(y, x)
