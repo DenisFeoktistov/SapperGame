@@ -1,8 +1,11 @@
+from .colorized import colorized, Colors
+
+
 EMPTY_INTERVAL = -(10 ** 9 + 7)
 
 
 def choice_of_number_in_interval(interval_min: int, interval_max: int, text: str = "Choose number in interval",
-                                 error_message="Incorrect input! Try again") -> int:
+                                 error_message=colorized("Incorrect input! Try again", Colors.RED)) -> int:
     if interval_min > interval_max:
         print("No possible options...")
         return EMPTY_INTERVAL

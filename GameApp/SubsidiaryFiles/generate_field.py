@@ -1,6 +1,8 @@
-from GameApp.SubsidiaryFiles.Cell import Cell, CellContent
 from typing import List, Tuple
 from random import sample
+
+
+from GameApp.SubsidiaryFiles.Cell import Cell, CellContent
 
 
 def generate_field(x: int, y: int, mines: int) -> List[List[Cell]]:

@@ -1,7 +1,10 @@
 from typing import Tuple, List
-from input_output_functions.enumerate_choice import enumerate_choice
-from input_output_functions.choice_of_number_in_interval import choice_of_number_in_interval
 from enum import Enum
+
+
+from input_output_functions.choice_of_number_in_interval import choice_of_number_in_interval
+from input_output_functions.enumerate_choice import enumerate_choice
+from input_output_functions.colorized import colorized, Colors
 
 
 class Action(Enum):
@@ -15,14 +18,14 @@ class GameTUI:
         pass
 
     def get_action(self, max_x, may_y) -> Tuple[int, int, Action]:
-        print("Make your move.")
         actions: List[Action] = [Action.OPEN, Action.FLAG, Action.SAVE]
-        action: Action = actions[enumerate_choice(list(map(lambda action: action.value, actions)))]
+        action: Action = actions[
+            enumerate_choice(list(map(lambda action: action.value, actions)), text=colorized("Make your move.", Colors.BLUE))]
 
         if action == Action.SAVE:
             return -1, -1, Action.SAVE
 
-        x: int = choice_of_number_in_interval(1, max_x, text="Select x")
-        y: int = choice_of_number_in_interval(1, may_y, text="Select y")
+        x: int = choice_of_number_in_interval(1, max_x, text=colorized("Select x", Colors.BLUE))
+        y: int = choice_of_number_in_interval(1, may_y, text=colorized("Select y", Colors.BLUE))
 
         return x, y, action

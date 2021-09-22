@@ -1,10 +1,14 @@
 from typing import List
 
+
+from .colorized import colorized, Colors
+
+
 EMPTY_OPTIONS_LIST = -1
 
 
 def enumerate_choice(options: List[str] = None, text: str = "Select option:",
-                     error_message="Incorrect input! Try again") -> int:
+                     error_message=colorized("Incorrect input! Try again", Colors.RED)) -> int:
     if not options:
         print("No possible options...")
         return EMPTY_OPTIONS_LIST

@@ -1,8 +1,10 @@
-from GameApp.SubsidiaryFiles.Field import Field
-from GameApp.SubsidiaryFiles.Cell import Cell, CellContent
-from enum import Enum
 from typing import List, Tuple
-from GameApp.SubsidiaryFiles.get_table_neighbors import get_table_neighbors2
+from enum import Enum
+
+
+from GameApp.SubsidiaryFiles.get_table_neighbors import get_table_neighbors
+from GameApp.SubsidiaryFiles.Cell import Cell, CellContent
+from GameApp.SubsidiaryFiles.Field import Field
 
 
 class State(Enum):
@@ -50,7 +52,7 @@ class FieldInterface:
         field.matrix[i][j].open()
         used[i][j] = True
 
-        neighbors: List[Tuple[int, int]] = get_table_neighbors2(i, j, *field.get_size())
+        neighbors: List[Tuple[int, int]] = get_table_neighbors(i, j, *field.get_size())
         for ui, uj in neighbors:
             if used[ui][uj]:
                 continue

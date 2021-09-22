@@ -1,6 +1,9 @@
 from enum import IntEnum
 
 
+from input_output_functions.colorized import colorized, Colors
+
+
 class CellContent(IntEnum):
     EMPTY = 0
     MINE = 1
@@ -27,12 +30,12 @@ class Cell:
 
     def __str__(self) -> str:
         if self.flagged and not self.opened:
-            return "⚐"
+            return colorized("⚐", Colors.YELLOW)
         if not self.opened:
             return "○"
         if self.content == CellContent.MINE:
-            return "◉"
+            return colorized("◉", Colors.RED)
         if self.content == CellContent.EMPTY:
             if self.mines_around == -1:
                 raise Exception("Init Cell with Field before calling __str__")
-            return str(self.mines_around)
+            return colorized(str(self.mines_around), Colors.GREEN)

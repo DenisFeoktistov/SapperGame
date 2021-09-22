@@ -1,6 +1,8 @@
 from typing import List, Tuple
+
+
+from GameApp.SubsidiaryFiles.get_table_neighbors import get_table_neighbors
 from .Cell import Cell, CellContent
-from GameApp.SubsidiaryFiles.get_table_neighbors import get_table_neighbors2
 
 
 class Field:
@@ -17,7 +19,7 @@ class Field:
             for j in range(len(self.matrix[0])):
                 self.matrix[i][j].mines_around = 0
 
-                for u in get_table_neighbors2(i, j, *self.get_size()):
+                for u in get_table_neighbors(i, j, *self.get_size()):
                     self.matrix[i][j].mines_around += self.matrix[u[0]][u[1]].content == CellContent.MINE
 
     def __str__(self):

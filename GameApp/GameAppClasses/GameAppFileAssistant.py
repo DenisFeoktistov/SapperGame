@@ -1,9 +1,10 @@
-import os
 from typing import List, Callable, Iterable
 from random import sample, choice
+import os
 
-from GameApp.SubsidiaryFiles.Field import Field
+
 from GameApp.SubsidiaryFiles.Cell import Cell, CellContent
+from GameApp.SubsidiaryFiles.Field import Field
 
 FIELDS_DIR = "./Fields/"
 
