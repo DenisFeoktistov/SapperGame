@@ -1,8 +1,8 @@
-from .GameAppFileAssistant import GameAppFileAssistant
-from .AppTUI import AppTUI, CREATE_NEW_FIELD
-from GameApp.Game.Game import Game
+from GameApp.GameAppClasses.GameAppFileAssistant import GameAppFileAssistant
+from GameApp.GameAppClasses.AppTUI import AppTUI, CREATE_NEW_FIELD
+from GameApp.GameAppClasses.Game.Game import Game
 from GameApp.SubsidiaryFiles.generate_field import generate_field
-from .SubsidiaryFiles.Field import Field
+from GameApp.SubsidiaryFiles.Field import Field
 
 
 class GameApp:

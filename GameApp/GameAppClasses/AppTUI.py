@@ -1,8 +1,7 @@
-from .SubsidiaryFiles.enumerate_choice import enumerate_choice
-from .SubsidiaryFiles.choice_of_number_in_interval import choice_of_number_in_interval
-from .GameAppFileAssistant import GameAppFileAssistant
+from input_output_functions.enumerate_choice import enumerate_choice
+from input_output_functions.choice_of_number_in_interval import choice_of_number_in_interval
+from GameApp.GameAppClasses.GameAppFileAssistant import GameAppFileAssistant
 from typing import List, Tuple
-from .SubsidiaryFiles.Field import Field
 
 CREATE_NEW_FIELD = "Create new field"
 

@@ -1,8 +1,8 @@
-from ..SubsidiaryFiles.Field import Field
-from ..SubsidiaryFiles.Cell import Cell, CellContent
+from GameApp.SubsidiaryFiles.Field import Field
+from GameApp.SubsidiaryFiles.Cell import Cell, CellContent
 from enum import Enum
 from typing import List, Tuple
-from ..SubsidiaryFiles.get_table_neighbors import get_table_neighbors2
+from GameApp.SubsidiaryFiles.get_table_neighbors import get_table_neighbors2
 
 
 class State(Enum):

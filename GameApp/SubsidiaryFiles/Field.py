@@ -1,6 +1,6 @@
 from typing import List, Tuple
 from .Cell import Cell, CellContent
-from .get_table_neighbors import get_table_neighbors2
+from GameApp.SubsidiaryFiles.get_table_neighbors import get_table_neighbors2
 
 
 class Field:

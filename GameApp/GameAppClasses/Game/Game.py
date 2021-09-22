@@ -1,11 +1,11 @@
-from GameApp.Game.GameTUI import GameTUI, Action
-from GameApp.Game.FieldInterface import FieldInterface, State
+from GameApp.GameAppClasses.Game.GameClasses.GameTUI import GameTUI, Action
+from GameApp.GameAppClasses.Game.GameClasses.FieldInterface import FieldInterface, State
 
 
-from ..SubsidiaryFiles.Field import Field
+from GameApp.SubsidiaryFiles.Field import Field
 
 
-from typing import Tuple, Type, Union
+from typing import Tuple
 
 
 class Game:

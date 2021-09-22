@@ -1,6 +1,6 @@
 from typing import Tuple, List
-from ..SubsidiaryFiles.enumerate_choice import enumerate_choice
-from ..SubsidiaryFiles.choice_of_number_in_interval import choice_of_number_in_interval
+from input_output_functions.enumerate_choice import enumerate_choice
+from input_output_functions.choice_of_number_in_interval import choice_of_number_in_interval
 from enum import Enum
 
 
