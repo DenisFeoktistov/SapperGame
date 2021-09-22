@@ -1,7 +1,7 @@
 from enum import IntEnum
 
 
-from input_output_functions.colorized import colorized, Colors
+from GameApp.SubsidiaryFiles.input_output_functions.colorized import colorized, Colors
 
 
 class CellContent(IntEnum):

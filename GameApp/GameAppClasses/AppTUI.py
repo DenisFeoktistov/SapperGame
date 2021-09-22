@@ -1,10 +1,10 @@
 from typing import List, Tuple
 
 
-from input_output_functions.choice_of_number_in_interval import choice_of_number_in_interval
+from GameApp.SubsidiaryFiles.input_output_functions.choice_of_number_in_interval import choice_of_number_in_interval
 from GameApp.GameAppClasses.GameAppFileAssistant import GameAppFileAssistant
-from input_output_functions.enumerate_choice import enumerate_choice
-from input_output_functions.colorized import colorized, Colors
+from GameApp.SubsidiaryFiles.input_output_functions.enumerate_choice import enumerate_choice
+from GameApp.SubsidiaryFiles.input_output_functions.colorized import colorized, Colors
 
 CREATE_NEW_FIELD = "Create new field"
 

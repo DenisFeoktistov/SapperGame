@@ -3,7 +3,7 @@ from typing import Tuple
 
 from GameApp.GameAppClasses.Game.GameClasses.FieldInterface import FieldInterface, State
 from GameApp.GameAppClasses.Game.GameClasses.GameTUI import GameTUI, Action
-from input_output_functions.colorized import colorized, Colors
+from GameApp.SubsidiaryFiles.input_output_functions.colorized import colorized, Colors
 from GameApp.SubsidiaryFiles.Field import Field
 
 

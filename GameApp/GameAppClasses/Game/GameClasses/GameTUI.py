@@ -2,9 +2,9 @@ from typing import Tuple, List
 from enum import Enum
 
 
-from input_output_functions.choice_of_number_in_interval import choice_of_number_in_interval
-from input_output_functions.enumerate_choice import enumerate_choice
-from input_output_functions.colorized import colorized, Colors
+from GameApp.SubsidiaryFiles.input_output_functions.choice_of_number_in_interval import choice_of_number_in_interval
+from GameApp.SubsidiaryFiles.input_output_functions.enumerate_choice import enumerate_choice
+from GameApp.SubsidiaryFiles.input_output_functions.colorized import colorized, Colors
 
 
 class Action(Enum):
