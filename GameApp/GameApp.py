@@ -18,11 +18,11 @@ class GameApp:
     def main_cycle(self) -> None:
         while True:
             field_file_name: str = self.app_tui.select_field_file()
-            while field_file_name == CREATE_NEW_FIELD:
+            if field_file_name == CREATE_NEW_FIELD:
                 self.file_assistant.save_field(
                     generate_field(*self.app_tui.select_field_settings()))
 
-                field_file_name: str = self.app_tui.select_field_file()
+                field_file_name: str = self.file_assistant.get_fields_names()[-1]
 
             field: Field = self.file_assistant.decode(field_file_name)
             field, finished = self.game.game_cycle(field)
