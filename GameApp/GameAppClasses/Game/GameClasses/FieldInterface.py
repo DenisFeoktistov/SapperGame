@@ -72,3 +72,14 @@ class FieldInterface:
     def check_win(self) -> bool:
         return all(map(lambda row: all(map(lambda cell: (cell.opened and cell.content == CellContent.EMPTY) or (
                 not cell.opened and cell.content == CellContent.MINE), row)), self.field.matrix))
+
+    def finish_game(self) -> State:
+        for row in self.field.matrix:
+            for cell in row:
+                if not cell.opened and not cell.flagged:
+                    cell.open()
+
+        if self.check_win():
+            return State.WIN
+        else:
+            return State.LOSE

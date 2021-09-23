@@ -12,15 +12,12 @@ class GameTUI:
         pass
 
     def get_action(self, max_x, may_y) -> Tuple[int, int, Action]:
-        actions: List[Action] = [Action.OPEN, Action.FLAG, Action.AI_MOVE, Action.SAVE]
+        actions: List[Action] = [Action.OPEN, Action.FLAG, Action.AI_MOVE, Action.FINISH, Action.SAVE, Action.DELETE]
         action: Action = actions[
             enumerate_choice(list(map(lambda action: action.value, actions)), text=colorized("Make your move.", Colors.BLUE))]
 
-        if action == Action.SAVE:
-            return -1, -1, Action.SAVE
-
-        if action == Action.AI_MOVE:
-            return -1, -1, Action.AI_MOVE
+        if action == Action.SAVE or action == Action.DELETE or action == Action.AI_MOVE or action == Action.FINISH:
+            return -1, -1, action
 
         x: int = choice_of_number_in_interval(1, max_x, text=colorized("Select x", Colors.BLUE))
         y: int = choice_of_number_in_interval(1, may_y, text=colorized("Select y", Colors.BLUE))

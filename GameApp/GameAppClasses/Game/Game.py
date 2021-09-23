@@ -34,6 +34,9 @@ class Game:
             if action == Action.SAVE:
                 return field, False
 
+            if action == Action.DELETE:
+                return field, True
+
             if action == Action.AI_MOVE:
                 AI_move: Tuple[int, int, Action] = self.AI.get_move()
                 if AI_move[2] == Action.OPEN:
@@ -42,6 +45,9 @@ class Game:
                     print(colorized(f"Put flag on position {(AI_move[0] + 1, AI_move[1] + 1)}", Colors.BLUE))
                 last_action_AI = True
                 continue
+
+            if action == Action.FINISH:
+                state = self.field_interface.finish_game()
 
             if action == Action.OPEN:
                 state = self.field_interface.open(y, x)
