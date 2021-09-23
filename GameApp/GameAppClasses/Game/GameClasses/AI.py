@@ -21,7 +21,7 @@ class AI:
 
             return i, j, Action.OPEN
 
-        p_matrix: List[List[int]] = [[0] * self.field.get_size()[1] for _ in range(self.field.get_size()[0])]
+        p_matrix: List[List[int]] = [[-1] * self.field.get_size()[1] for _ in range(self.field.get_size()[0])]
 
         possible_mines_around: List[List[int]] = [[0] * self.field.get_size()[1] for _ in
                                                   range(self.field.get_size()[0])]
@@ -53,10 +53,20 @@ class AI:
         max_p_coords: Tuple[int, int] = (0, 0)
         for i, row in enumerate(self.field.matrix):
             for j, cell in enumerate(row):
-                if p_matrix[i][j] > max_p:
+                if p_matrix[i][j] > max_p and p_matrix[i][j] != -1:
                     max_p = p_matrix[i][j]
                     max_p_coords = i, j
-        return max_p_coords[0], max_p_coords[1], Action.FLAG
+        if max_p == 100:
+            return max_p_coords[0], max_p_coords[1], Action.FLAG
+
+        min_p: int = 0
+        min_p_coords: Tuple[int, int] = (0, 0)
+        for i, row in enumerate(self.field.matrix):
+            for j, cell in enumerate(row):
+                if p_matrix[i][j] < min_p and p_matrix[i][j] != -1:
+                    min_p = p_matrix[i][j]
+                    min_p_coords = i, j
+        return min_p_coords[0], min_p_coords[1], Action.OPEN
 
     def all_closed(self) -> bool:
         return all(map(lambda row: all(map(lambda cell: not cell.opened, row)), self.field.matrix))
