@@ -1,7 +1,6 @@
 from __future__ import annotations
 from typing import Tuple
 
-
 from GameApp.GameAppClasses.Game.GameClasses.FieldInterface import FieldInterface, State
 from GameApp.GameAppClasses.Game.GameClasses.GameTUI import GameTUI, Action
 from GameApp.SubsidiaryFiles.input_output_functions.colorized import colorized, Colors
@@ -19,9 +18,13 @@ class Game:
         state: State = self.field_interface.set_field(field)
         self.AI.set_field(field)
 
+        last_action_AI: bool = False
         while True:
-            print(colorized("Actual field:", Colors.BLUE))
-            print(field)
+            if not last_action_AI:
+                print(colorized("Actual field:", Colors.BLUE))
+                print(field)
+
+            last_action_AI = False
 
             action_tuple: Tuple[int, int, Action] = self.game_tui.get_action(*reversed(field.get_size()))
             x, y, action = action_tuple
@@ -32,14 +35,20 @@ class Game:
                 return field, False
 
             if action == Action.AI_MOVE:
-                AI_move = self.AI.get_move()
-                print(colorized(f"Put flag on position {(AI_move[0] + 1, AI_move[1] + 1)}", Colors.BLUE))
+                AI_move: Tuple[int, int, Action] = self.AI.get_move()
+                if AI_move[2] == Action.OPEN:
+                    print(colorized(f"Open cell on position {(AI_move[0] + 1, AI_move[1] + 1)}", Colors.BLUE))
+                elif AI_move[2] == Action.FLAG:
+                    print(colorized(f"Put flag on position {(AI_move[0] + 1, AI_move[1] + 1)}", Colors.BLUE))
+                last_action_AI = True
                 continue
 
             if action == Action.OPEN:
                 state = self.field_interface.open(y, x)
             if action == Action.FLAG:
                 state = self.field_interface.flag(y, x)
+
+            # --------------------------------------------------------
 
             if state == State.WIN:
                 print(colorized("Congrats! You win!", Colors.GREEN))

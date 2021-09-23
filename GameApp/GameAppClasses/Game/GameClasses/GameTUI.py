@@ -12,7 +12,7 @@ class GameTUI:
         pass
 
     def get_action(self, max_x, may_y) -> Tuple[int, int, Action]:
-        actions: List[Action] = [Action.OPEN, Action.FLAG, Action.SAVE, Action.AI_MOVE]
+        actions: List[Action] = [Action.OPEN, Action.FLAG, Action.AI_MOVE, Action.SAVE]
         action: Action = actions[
             enumerate_choice(list(map(lambda action: action.value, actions)), text=colorized("Make your move.", Colors.BLUE))]
 
