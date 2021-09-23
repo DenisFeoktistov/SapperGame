@@ -38,11 +38,7 @@ class Game:
                 return field, True
 
             if action == Action.AI_MOVE:
-                AI_move: Tuple[int, int, Action] = self.AI.get_move()
-                if AI_move[2] == Action.OPEN:
-                    print(colorized(f"Open cell on position {(AI_move[0] + 1, AI_move[1] + 1)}", Colors.BLUE))
-                elif AI_move[2] == Action.FLAG:
-                    print(colorized(f"Put flag on position {(AI_move[0] + 1, AI_move[1] + 1)}", Colors.BLUE))
+                self.show_AI_move()
                 last_action_AI = True
                 continue
 
@@ -72,3 +68,10 @@ class Game:
                 print(colorized(state.value, Colors.RED))
             else:
                 print(state.value)
+
+    def show_AI_move(self):
+        AI_move: Tuple[int, int, Action] = self.AI.get_move()
+        if AI_move[2] == Action.OPEN:
+            print(colorized(f"Open cell on position {(AI_move[0] + 1, AI_move[1] + 1)}", Colors.BLUE))
+        elif AI_move[2] == Action.FLAG:
+            print(colorized(f"Put flag on position {(AI_move[0] + 1, AI_move[1] + 1)}", Colors.BLUE))
